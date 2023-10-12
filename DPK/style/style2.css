@@ -1,0 +1,113 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    min-height: 100vfh;
+    /* semua buat bikin div bisa full layar  */
+}
+
+div{
+    width: 100%;/*atur lebar tiap div*/
+}
+.navbar{
+    background-color: #000000;/*mewarnai background*/
+    height: 50px;/*mengatur tinggi*/
+    position: relative;
+    border-bottom: #818181 2px solid;
+}
+.logo{
+    height: 40px;
+    width: 40px;  
+    margin: 5px 5px 5px 20px;
+    float: left;/*mengatur gambar tempel kiri*/
+}
+ul{
+    list-style-type: none;/*menghilangkan list buletnya*/
+}
+li{
+    display: inline-block;/*untuk membuat list menyamping*/
+    padding-bottom: 2px;
+}
+li a{
+    color: rgb(255, 255, 255);/*GANTI WARNA TULISAN*/
+    text-decoration: none;/*MENGHAPUS GARIS BAWAH DAN WARNA BIRU*/
+    margin-top: 10px;
+    margin-left: 5px;
+    display: block;
+    padding: 5px 20px 5px 20px;
+    /* urutan atas kanan bawah kiri */
+    font-size: 20px;/*MENGATUR UKURAN TULISAN*/
+}
+li a:hover{
+    /* UNTUK MENGATUR KETIKA DI ATAS KURSOR */
+    background-color: #313131;
+}
+.headpage{
+    height: 90%;
+    background-color:   #000000;
+    display: flex;
+    align-items: center;
+    /* untuk bikin gambar jadi ditengah secara horizontal harus pakai
+    display flex nya juga */
+}
+.headpage img{
+    display: block;
+    position: absolute;
+    /* syarat pakai z-index */
+    width: 300px;
+    height: 300px;
+    margin-top: 50px;
+    margin-left: 200px;
+}
+.text-nerve{
+    color: aliceblue;
+    font-family: 'Pixelify Sans', cursive;
+    margin-left: auto;
+    width: 400px;
+    margin-right: 200px;
+}
+.text-nerve button{
+    color: aliceblue;
+    background-color: #555555;
+    border: #000000 3px double;
+    border-radius: 100px;
+    padding: 60px 30px 60px 30px;
+    margin: 20px 20px 20px 100px;
+}
+.content{
+    display: flex;
+}
+.content span{
+    background-color: pink;
+    width :200px;
+    height: 60px;
+    transform: rotate(330deg);
+}
+.content img{
+    height: 400px;
+    width: 200px;
+    margin:50px 0px 50px 50px;
+}
+.content div{
+    width: 450px;
+    margin-left: auto;
+    height: fit-content;
+    margin-right: -100px;
+    margin-top: 120px;
+    border: #000000 3px double;
+    color: rgb(255, 255, 255);
+    background-color: pink;
+    font-family: 'Dela Gothic One', cursive;
+}
+.content button{
+    border-radius: 100px;
+    padding: 60px 30px 60px 30px;
+    color: antiquewhite;
+    background-color: pink;
+    height: fit-content;
+    margin: 20px 0px 20px 0px;
+}
+.footer{
+    background-color: #000000;
+
+}
