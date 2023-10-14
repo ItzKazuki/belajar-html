@@ -1,0 +1,122 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    min-height: 100vfh;
+}
+
+div {
+    width: 100%;
+}
+
+.navbar {
+    background-color: white;
+    height: 50px;
+    width: 100%;
+    position: relative;
+    border-bottom: 2px solid;
+}
+
+.logo {
+    height: 40px;
+    width: 40px;
+    margin: 5px 5px 5px 20px;
+    float: left;
+    border-radius: 20px;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline-block;
+}
+
+li a {
+    color: black;
+    text-decoration: none;
+    margin-top: 15px;
+    margin-left: 23px;
+    display:block;
+    font-size: 15px;
+}
+
+li a:hover {
+    color: wheat;
+}
+
+.headpage {
+    background-color:black;
+}
+
+.heading {
+    display: flex;
+    width:95%;
+    height:770px;
+    border-radius: 20px;
+    margin: auto;
+
+}
+
+.title {
+    margin-top: -900px;
+    margin-bottom: 100px;
+    width: 500px;
+    height: 300px;
+    margin-left: 100px;
+}
+
+.body1 {
+    background-color: black;
+    height: 900px ;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.body__poster {
+    width: 100%;
+    object-fit: contain;
+    max-height: 200px;
+    margin-right: 10px;
+    transition: 450ms;
+}  
+
+.body__poster:hover{
+    transform: scale(1.10);
+}
+
+.body__posters {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 20px;
+}
+
+.body__posters::-webkit-scrollbar {
+    display: none;
+}
+
+.body {
+    color: white;
+    margin-left: 30px;
+}
+
+.footer {
+    background-color: black;
+}
+
+.content1 {
+    margin-bottom: -2000px;
+    color: white;
+    display: flex;
+    margin-left: 180px;
+
+}
+
+.content1 li {
+    margin: 20px;
+}
+
+.footer li:hover {
+    color: wheat;
+}

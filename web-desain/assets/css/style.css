@@ -9,6 +9,7 @@
 :root {
   --content: rgb(74, 121, 209);
   --button: rgb(0, 153, 255);
+  --footer: rgb(17, 22, 90);
 }
 
 div {
@@ -27,9 +28,10 @@ div {
   height: 75px;
   /* padding-left: 20px; */
   float: left;
-  margin-top: 20px;
+  margin: 20px 20px 20px 20px;
+  /* margin-top: 20px;
   margin-left: 20px;
-  margin-right: 20px;
+  margin-right: 20px; */
 }
 
 .navbar ul {
@@ -43,14 +45,13 @@ div {
   margin-right: 20px;
 }
 
-.navbar ul > li > a {
+.navbar ul > li > a{
   text-decoration: none;
   font-family: 'Gabarito', sans-serif;
   padding: 5px;
-  display: block;
   color: rgb(9, 64, 136);
   font-size: 30px;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-left: 10px;
   display: block;
 }
@@ -58,6 +59,59 @@ div {
 .navbar ul > li > a:hover {
   color: rgb(5, 43, 92);
 }
+
+.dropdown {
+  overflow: hidden;
+}
+
+.dropbtn {
+  font-size: 30px;  
+  border: none;
+  outline: none;
+  color: rgb(9, 64, 136);
+  padding: 14px 16px;
+  background-color: inherit;  
+  font-family: 'Gabarito', sans-serif;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  font-family: 'Gabarito', sans-serif;
+  font-size: 17px;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown-content a:nth-child(1) {
+  border-radius: 20px 20px 0px 0px;
+}
+
+.dropdown-content a:nth-child(4) {
+  border-radius: 0px 0px 20px 20px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Head and Content Page */
 
 .headpage {
   height: 80vh;
@@ -67,19 +121,20 @@ div {
 }
 
 .headpage img {
-  border-radius: 10px;
+  border-radius: 80px 24px 100px 25px;
 }
 
 .text-head {
   color: rgb(49, 42, 42);
-  font-family: 'Pixelify Sans', cursive;
+  font-family: 'Gabarito', sans-serif;
+  font-size: 20px;
   margin-left: auto;
   width: 400px;
   margin-right: 250px;
 }
 
 .text-head button{
-  font-family: 'Pixelify Sans', cursive;
+  font-family: 'Gabarito', sans-serif;
   margin-top: 25px;
   margin: 10px;
   font-size: 18px;
@@ -103,32 +158,52 @@ div {
 }
 
 .content {
-  height: 75vh;
+  height: 71vh;
   background-color: var(--content);
+}
+
+.content-image {
   display: flex;
   justify-content: space-evenly;
-  padding: 5rem 0rem 5rem 0rem;
+  padding: 3rem 0rem 3rem 0rem;
   color: antiquewhite;
 }
 
-.content div {
-  padding-left: 18px;
+.content-text {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 40px;
+  font-family: 'Gabarito', sans-serif;
+  padding-top: 20px;
 }
 
-.content div > p, .content > div > h3 {
+/* .content-image div {
+  padding-left: 10px;
+} */
+
+.content-image div > p, .content-image > div > h3 {
   text-align: center;
   font-family: 'Alegreya Sans', sans-serif;
+  font-size: 15px;
 }
 
-.content img {
+.content-image img {
   height: 250px;
   padding-left: 25%;
 }
 
+.about-content {
+  height: 75vh;
+  background-image: linear-gradient(180deg, var(--content), var(--footer));
+}
+
+/* Footer Page */
+
 footer {
   height: 30vh;
   color: antiquewhite;
-  background-color: rgb(17, 22, 90);
+  background-color: var(--footer);
   bottom: 0;
   font-size: 16px;
 }
@@ -140,7 +215,7 @@ footer * {
   font-family: 'PT Sans', sans-serif;
 }
 
-footer h4 {
+footer h3 {
   padding-bottom: 25px;
 }
 
@@ -211,6 +286,7 @@ footer ul > li > a {
 .social {
   display: flex;
   flex-direction: row;
+  padding-left: 60px;
   margin-top: 0.5em;
 }
 
@@ -229,13 +305,14 @@ footer ul > li > a {
 }
 
 .copyright {
+  height: 7vh;
   padding: 0.3em 1em;
   background-color: #25262e;
 }
 
 .footer-menu {
   float: left;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .footer-menu a{
@@ -251,4 +328,10 @@ footer ul > li > a {
 .copyright p {
   font-size: 0.9em;
   text-align: right;
+}
+
+@media screen and (max-width: 850px) {
+  .row.primary {
+    grid-template-columns: 1fr;
+  }
 }

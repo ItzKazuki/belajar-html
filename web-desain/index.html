@@ -6,60 +6,84 @@
     <title>Home | FikqHosting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link href="assets/css/font.css" rel="stylesheet">
+    <link href="assets/css/fonts.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body id="home">
     <div class="navbar">
-        <img src="assets/image/no bg-modified.png" alt="icon">
+        <img src="assets/image/no bg-modified.png" style="padding-top: 5px;" alt="icon">
         <ul>
             <li style="margin-left: auto"><a href="#home">Home</a></li>
-            <li><a href="http://local.kazukikun.space/belajar-navbar/enkripsi.html">Profile</a></li>
-            <li><a href="http://local.kazukikun.space/belajar-navbar/about.html">About</a></li>
-            <li style="float: right; padding-right: 20px; align-items: center;"><a href="http://local.kazukikun.space/belajar-navbar/login.html"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
-              </svg> Login</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="career.html">Career</a></li>
+            <li>
+                <!-- <li><a href="product.html">Product</a></li> -->
+                <section class="dropdown">
+                    <a class="dropbtn">Product 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                        </svg>
+                    </a>
+                    <section class="dropdown-content">
+                      <a href="#">Vps</a>
+                      <a href="#">Web Hosting</a>
+                      <a href="#">Email Hosting</a>
+                      <a href="#">Wordpress Hosting</a>
+                    </section>
+                </section>
+            </li>
+            <li style="float: right; padding-right: 20px; align-items: center;"><a href="login.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
+                </svg> Login</a></li>
         </ul>
     </div>
     <div class="headpage">
         <!-- <img src="assets/image/712288.png" alt="" /> -->
-        <img src="assets/image/20230506152201-2023-05-06news152120.jpg" alt="" style="margin-left: 120px;" height="325px">
+        <img src="assets/image/20230506152201-2023-05-06news152120.jpg" alt="" style="margin-left: 120px; " height="325px">
         <div class="text-head">
             <div style="text-align: center; margin-bottom: 20px;">
                 <h2>Hosting Murah</h2>
-                <h3>murah dengan kecepatan website yang uptimenya up-to 99%</h3>
+                <h3>murah dengan kecepatan website yang uptime up-to 99%</h3>
             </div>
             <button style="margin-left: 100px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
               </svg> beli sekarang</button>
         </div>
     </div>
-    <div class="content">
-        <div id="image1">
-            <img src="assets/image/secure-icon.webp" alt="">
-            <h3>Aman</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis ipsum doloremque vero quidem
-                vitae aliquam id nam quia necessitatibus?</p>
+    <div class="content" id="features">
+        <span class="content-text">Features</span>
+        <div class="content-image">
+            <div id="image1">
+                <img src="assets/image/secure-icon.webp" alt="">
+                <h3>Aman</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis ipsum doloremque vero quidem
+                    vitae aliquam id nam quia necessitatibus?</p>
+            </div>
+            <div id="image2">
+                <img src="assets/image/fast-icon.webp" alt="">
+                <h3>Fast</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis ipsum doloremque vero quidem
+                    vitae aliquam id nam quia necessitatibus?</p>
+            </div>
+            <div id="image3">
+                <img src="assets/image/reliable-icon.webp" alt="">
+                <h3>Reliable</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis ipsum doloremque vero quidem
+                    vitae aliquam id nam quia necessitatibus?</p>
+            </div>
         </div>
-        <div id="image2">
-            <img src="assets/image/fast-icon.webp" alt="">
-            <h3>Fast</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis ipsum doloremque vero quidem
-                vitae aliquam id nam quia necessitatibus?</p>
-        </div>
-        <div id="image3">
-            <img src="assets/image/reliable-icon.webp" alt="">
-            <h3>Reliable</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis ipsum doloremque vero quidem
-                vitae aliquam id nam quia necessitatibus?</p>
-        </div>
+    </div>
+    <div class="about-content">
+        
     </div>
     <footer>
         <div class="row primary">
             <div class="colum about">
-                <h4>FikqHosting</h4>
+                <h3>FikqHosting</h3>
                 <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
                     <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"></path>
                   </svg> Support: <a href="mailto:cs@myweb.com">cs@myweb.com</a></p>
@@ -89,34 +113,33 @@
             </div>
             
             <div class="colum link">
-                <h4>Features</h4>
+                <h3>Links</h3>
                 <ul>
-                    <li><a href="">Login</a></li>
+                    <li><a href="login.html">Login</a></li>
                 </ul>
                 <ul>
-                    <li><a href="">WebAdmin</a></li>
+                    <li><a href="panel.html">Panel</a></li>
                 </ul>
                 <ul>
-                    <li><a href="">Career</a></li>
+                    <li><a href="career.html">Career</a></li>
                 </ul>
                 <ul>
-                    <li><a href="">Contact</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
 
         </div>
-            <div class="row copyright">
-                <div class="footer-menu">
-
-                    <a href="">Home</a>
-                    <a href="">F.A.Q</a>
-                    <a href="">Cookies Policy</a>
-                    <a href="">Terms Of Service</a>
-                    <a href="">Support</a>
-                </div>
-                <p>Copyright © 2022</p>
-            </div>
-        </footer>
+        <div class="row copyright">
+            <section class="footer-menu">
+                <a href="#home">Home</a>
+                <a href="faq.html">F.A.Q</a>
+                <a href="cookie-terms.html">Cookies Policy</a>
+                <a href="tos.html">Terms Of Service</a>
+                <a href="mailto:cs@myweb.com">Support</a>
+            </section>
+            <p style="padding-top: 10px;">Copyright © 2023</p>
+        </div>
+    </footer>
 
     <script src="assets/js/index.js"></script>
 
