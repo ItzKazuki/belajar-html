@@ -1,12 +1,6 @@
-window.onscroll = function() {myFunction()};
+window.onscroll = () => {
+  var navbar = document.getElementById("navbar");
+  var sticky = navbar.offsetTop;
 
-var navbar = document.getElementById("navbar");
-var sticky = navbar.offsetTop;
-
-function myFunction() {
-  if (window.scrollY >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
+  window.scrollY >= sticky ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
 }

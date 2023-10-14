@@ -134,7 +134,7 @@ div {
 }
 
 .text-head {
-  color: rgb(49, 42, 42);
+  color: rgb(0, 0, 0);
   font-family: 'Gabarito', sans-serif;
   font-size: 20px;
   margin-left: auto;
@@ -203,13 +203,19 @@ div {
 }
 
 .pricing {
-  height: 75vh;
+  height: 100vh;
   background-image: linear-gradient(180deg, var(--content), var(--footer));
 }
 
 .cards {
   display: flex;
   white-space: nowrap;
+  overflow: auto;
+  background-color: #b4c70a;
+  height: 70vh;
+  /* justify-content: center; */
+  margin-left: 295px;
+  margin-right: 250px;
 }
 
 .card {
@@ -217,18 +223,39 @@ div {
   border-radius: 10px;
   height: 50vh;
   margin-left: 20px;
+  font-family: 'Gabarito', sans-serif;
+  margin-right: 20px;
+  margin-top: 75px;
   text-align: center;
+  line-height: 1.5;
+}
+
+.card {
+  text-decoration: none;
+  color: black;
+}
+
+.card h4 {
+  font-weight: bold;
+  font-size: x-large;
 }
 
 .card img {
   height: 150px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .card p {
   margin-left: 10px;
   margin-right: 10px;
+  /* display: inline-block; */
+}
+
+.card span {
+  color: rgb(63, 201, 255);
 }
 
 /* Footer Page */
