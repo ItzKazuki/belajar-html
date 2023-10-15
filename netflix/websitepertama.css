@@ -90,7 +90,9 @@ li a:hover {
     overflow-y: hidden;
     overflow-x: scroll;
     padding: 20px;
-}
+    /* -ms-overflow-style: none;  IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+} 
 
 .body__posters::-webkit-scrollbar {
     display: none;
