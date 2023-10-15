@@ -5,7 +5,7 @@ repo ini berisi backup project jikalau hardisk laptop tb tb meleduk ya saya puny
 folder ini berada di /var/www/local dimana ini adalah local folder untuk webserver di laptop saya (pake ubuntu btw, webserver nya apache).
 
 ## List Tugas
-- web-desain **(tugas hari Rabu, 11 Oct 2023)**
+- [web-desain]() **(tugas hari Rabu, 11 Oct 2023)**
 
 ## Progres
 - HTML
