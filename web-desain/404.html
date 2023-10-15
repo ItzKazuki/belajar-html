@@ -1,68 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404 | FikqHosting</title>
     <style>
-      * {
-        transition: all 0.6s;
-      }
-
-      html {
-        height: 100%;
-      }
-
-      body {
-        font-family: "Lato", sans-serif;
-        color: #888;
-        margin: 0;
-      }
-
-      #main {
-        display: table;
-        width: 100%;
-        height: 100vh;
-        text-align: center;
-      }
-
-      .error-message {
-        display: table-cell;
-        vertical-align: middle;
-      }
-
-      .error-message h1 {
-        font-size: 50px;
-        display: inline-block;
-        padding-right: 12px;
-        animation: type 0.5s alternate infinite;
-      }
-
-      @keyframes type {
-        from {
-          box-shadow: inset -3px 0px 0px #888;
+        * {
+            transition: all 0.6s;
         }
-        to {
-          box-shadow: inset -3px 0px 0px transparent;
+
+        html {
+            height: 100%;
         }
-      }
+
+        body {
+            font-family: "Lato", sans-serif;
+            color: #888;
+            margin: 0;
+        }
+
+        #main {
+            display: table;
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .error-message {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .error-message h1 {
+            font-size: 50px;
+            display: inline-block;
+            padding-right: 12px;
+            animation: type 0.5s alternate infinite;
+        }
+
+        @keyframes type {
+            from {
+                box-shadow: inset -3px 0px 0px #888;
+            }
+
+            to {
+                box-shadow: inset -3px 0px 0px transparent;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="main">
-      <div class="error-message">
-        <h1>Error 404</h1>
-        <h4>Your page is Not Found</h4>
-        <p>Redirect back to FikqHosting in <span id="count"></span></p>
-      </div>
+        <div class="error-message">
+            <h1>Error 404</h1>
+            <h4>Your page is Not Found</h4>
+            <p>Redirect back to FikqHosting in <span id="count"></span></p>
+        </div>
     </div>
     <script>
         async function sleep(ms) {
             return new Promise((resolve) => setTimeout(resolve, ms));
         }
+        
         document.addEventListener(
             "DOMContentLoaded",
-            async () => { // pas di load html nya, function ini bakal di jalanin pertama kali
+            async () => {
+                // pas di load html nya, function ini bakal di jalanin pertama kali
                 const count = document.getElementById("count"); // ambil id count
                 const countNumber = 10; // set mau berapa detik di redirect, min 10 detik sih
                 for (let i = countNumber; i > 0; i--) {
@@ -73,7 +78,10 @@
                         window.location.href = "index.html"; // kalo index udh sama dengan 1, maka redirect ke index.html
                     }
                 }
-            }, false);
+            },
+            false
+        );
     </script>
-  </body>
+</body>
+
 </html>
