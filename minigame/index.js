@@ -61,7 +61,6 @@ function tebakAngka(angka1, angka2) {
             break;
     }
 
-
     return {getNum, getNum2, getOprator, hasil}
 
 }

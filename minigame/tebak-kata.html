@@ -36,9 +36,9 @@
         cekJawaban.addEventListener('click', () => {
             isBenar.innerHTML = "";
             if(jawaban.value === acakKata ) {
-                isBenar.innerHTML += 'Benar';
+                isBenar.innerHTML += 'Benar, jawabannya adalah: ' + acakKata;
             } else {
-                isBenar.innerHTML += 'Salah';
+                isBenar.innerHTML += 'Salah, coba lagi';
             }
         })
         // console.log()

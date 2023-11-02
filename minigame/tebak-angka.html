@@ -8,6 +8,7 @@
 <body>
 
     <main>
+        <h2>Tebak Angka</h2>
         <div id="pertanyaan">Soal: </div>
         <br>
         <div>
@@ -22,6 +23,13 @@
             <button id="cekJawaban" style="margin:auto auto;">kirim</button>
         </div>
         <div id="isBenar"></div>
+        <br>
+        <div>
+            <h3>spill jawaban dong kak</h3>
+            <p class="debugAnswer">Num1: </p>
+            <p class="debugAnswer">Num2: </p>
+            <p class="debugAnswer">Hasil: </p>
+        </div>
     </main>
     
     <script src="index.js"></script>
@@ -39,11 +47,16 @@
         operator.innerHTML += angka.getOprator
         inputJawaban1.value = angka.getNum
 
+        // console.log(document.getElementsByClassName('debugAnswer'))
+
         cekJawaban.addEventListener('click', () => {
             if(angka.getNum2 == inputJawaban2.value) {
                 document.getElementById('isBenar').innerHTML = 'benar'
+                document.getElementsByClassName('debugAnswer')[0].innerHTML += angka.getNum
+                document.getElementsByClassName('debugAnswer')[1].innerHTML += angka.getNum2
+                document.getElementsByClassName('debugAnswer')[2].innerHTML += angka.hasil
             } else {
-                document.getElementById('isBenar').innerHTML = 'salah'
+                document.getElementById('isBenar').innerHTML = 'salah, coba lagi'
             }
         })
     </script>

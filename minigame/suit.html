@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuitvDigital</title>
+    <title>Suit Digital</title>
     <style>
         .game > button {
             margin-left: 5px;
@@ -15,7 +15,7 @@
     <h2></h2>
 
     <div>
-        <p>musuh: wait opponent</p>
+        <p id="debugMusuh">musuh: wait a opponent</p>
     </div>
     
     <div class="game">
@@ -24,19 +24,83 @@
         <button id="kertas">Kertas</button>
     </div>
 
+    <div>
+        <br>
+        <button id="cekSuit">Cek</button>
+    </div>
+
+    <div><p id="result">Hasil: </p></div>
+
     <script>
+        // import id button/ p
         const batu = document.getElementById('batu')
         const gunting = document.getElementById('gunting')
         const kertas = document.getElementById('kertas')
-        const randNum = Math.random();
-        let user = '';
+        const cek = document.getElementById('cekSuit')
+        const hasil = document.getElementById('result')
+        const debugMusuh = document.getElementById('debugMusuh')
 
-        batu.addEventListener('click', () => user = 'batu')
-        gunting.addEventListener('click', () => user = 'gunting')
-        kertas.addEventListener('click', () => user = 'kertas')
+        // system var
+        const randNum = Math.floor(Math.random() * 3);
+        const colorButtonIsTrue = 'blue';
+        let user = '';
+        let ai = '';
+
+        // user input, if batu return this, etc
+        batu.addEventListener('click', () => {
+            user = 'batu';
+            batu.style.backgroundColor = colorButtonIsTrue;
+            gunting.style.backgroundColor = '';
+            kertas.style.backgroundColor = '';
+        })
+        gunting.addEventListener('click', () => {
+            user = 'gunting';
+            gunting.style.backgroundColor = colorButtonIsTrue; 
+            batu.style.backgroundColor = '';
+            kertas.style.backgroundColor = '';
+        })
+        kertas.addEventListener('click', () => {
+            user = 'kertas';
+            kertas.style.backgroundColor = colorButtonIsTrue;
+            gunting.style.backgroundColor = '';
+            batu.style.backgroundColor = '';
+        })
+
+        // ai input/ system input
+        if(randNum == 0) {
+            ai = 'batu';
+        } else if(randNum == 1) {
+            ai = 'gunting'
+        } else {
+            ai = 'kertas';
+        }
 
         
+        // if check buton clicked
+        cek.addEventListener('click', () => {
+            
+            // just a funny debug
+            debugMusuh.innerHTML = 'musuh: ';
+            hasil.innerHTML = 'Hasil: ';
+            debugMusuh.innerHTML += ai
 
+
+            if(user == ai) {
+                hasil.innerHTML += 'seri'
+            } else if(ai == 'batu' && user == 'gunting') {
+                hasil.innerHTML += 'musuh menang'
+            } else if(ai == 'gunting' && user == 'batu') {
+                hasil.innerHTML += 'kamu menang'
+            } else if(ai == 'kertas' && user == 'gunting') {
+                hasil.innerHTML += 'kamu menang'
+            } else if(ai == 'gunting' && user == 'kertas') {
+                hasil.innerHTML += 'musuh menang'
+            } else if(ai == 'batu' && user == 'kertas') {
+                hasil.innerHTML += 'kamu menang'
+            } else if(ai == 'kertas' && user == 'batu') {
+                hasil.innerHTML += 'musuh menang'
+            }
+        })
     </script>
 </body>
 </html>
