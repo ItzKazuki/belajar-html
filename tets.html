@@ -14,14 +14,17 @@
             height: 100px;
             width: 100px;
         }
+
         p {
             font-size: 30px;
             margin-left: 35px;
         }
 
         #result {
-            height: 100px;
             width: 100px;
+            height: 100px;
+            margin: auto;
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -49,6 +52,8 @@
             button -=1;
             result.innerHTML += myButton[button].innerHTML;
             result.style.backgroundColor = myButton[button].style.backgroundColor;
+            result.childNodes[0].style.marginTop = '50px';
+            console.log(result.childNodes[0])
         }
 
         function mati() {

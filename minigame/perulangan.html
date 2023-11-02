@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>perulangan</title>
+    
+    <script>
+        document.write('hah')
+        document.write('<br>')
+        for(let kolom = 1; kolom <= 10; kolom++) {
+            for(baris = 1; baris <= kolom; baris ++) {
+                document.write('*')
+            }
+            document.write('<br>')
+        }
+        for(kolom = 10; kolom >= 1; kolom--) {
+            for(let baris = 1; baris <= kolom; baris++) {
+                document.write('*')
+            }
+            document.write('<br>')
+        }
+
+        document.write('hah')
+        document.write('<br>')
+
+        let isi = ''
+
+        for(let kolom = 1; kolom <=5; kolom++) {
+            for(let pagar = 5; (pagar - kolom) >= 0; pagar--) {
+                isi += ' ';
+            }
+            for(let bintang = 1; bintang <= kolom; bintang++) {
+                isi += '*';
+            }
+            isi += '\n';
+        }
+        console.log(isi)
+        for(let kolom = 1; kolom <=5; kolom++) {
+            for(let pagar = 5; (pagar - kolom) >= 0; pagar--) {
+                isi += ' ';
+            }
+            for(let bintang = 1; bintang <= kolom; bintang++) {
+                isi += '*';
+            }
+            isi += '\n';
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

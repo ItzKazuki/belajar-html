@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cek nilai</title>
+</head>
+<body>
+    <main>
+        <h2>Cek Nilai</h2>
+        <div>
+            <div>
+                <label for="inputNama">Nama Siswa:</label>
+                <input type="text" id="inputNama">
+            </div>
+            <div>
+                <label for="inputNilai">Nilai Siswa:</label>
+                <input type="number" id="inputNilai">
+            </div>
+            <button id="kirim">Kirim</button>
+        </div>
+        <p id="hasilNilai"></p>
+    </main>
+
+    <script>
+        const resultNilai = document.getElementById('hasilNilai');
+        const kirim = document.getElementById('kirim');
+        
+        
+        
+        kirim.addEventListener('click', () => {
+            const namaUser = document.getElementById('inputNama').value
+            let nilaiSiswa = `Nilai ${namaUser} adalah: `;
+            const inputUser = parseInt(document.getElementById('inputNilai').value);
+
+            if(inputUser <= 100 && inputUser >= 76) {
+                resultNilai.innerHTML = "";
+                resultNilai.innerHTML = nilaiSiswa + 'A'
+            } else if (inputUser <= 75 && inputUser >= 51) {
+                resultNilai.innerHTML = "";
+                resultNilai.innerHTML = nilaiSiswa + 'B'
+            } else if (inputUser >= 26 && inputUser <= 50) {
+                resultNilai.innerHTML = "";
+                resultNilai.innerHTML = nilaiSiswa + 'C'
+            } else if (inputUser >= 0 && inputUser <= 25) {
+                resultNilai.innerHTML = "";
+                resultNilai.innerHTML = nilaiSiswa + 'D'
+            } else {
+                resultNilai.innerHTML = 'Masukan nilai yang benar'
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak Angka</title>
+</head>
+<body>
+
+    <main>
+        <div id="pertanyaan">Soal: </div>
+        <br>
+        <div>
+            <label for="inputJawaban">Jawab:</label>
+            <br>
+            <div style="display: flex; padding: 5pc;">
+
+                <input type="number" id="inputJawaban" disabled>
+                <p style="padding: 5px 5px;" id="operator"></p>
+                <input type="number" id="inputJawaban2">
+            </div>
+            <button id="cekJawaban" style="margin:auto auto;">kirim</button>
+        </div>
+        <div id="isBenar"></div>
+    </main>
+    
+    <script src="index.js"></script>
+    <script>
+        const pertanyaan = document.getElementById('pertanyaan')
+        const inputJawaban1 = document.getElementById('inputJawaban');
+        const inputJawaban2 = document.getElementById('inputJawaban2');
+        const cekJawaban = document.getElementById('cekJawaban')
+        const operator = document.getElementById('operator')
+
+        const angka = tebakAngka()
+        console.log(angka)
+        // pertanyaan.innerHTML += `${angka.getNum} ${angka.getOprator} ${angka.getNum2}`
+        pertanyaan.innerHTML += angka.hasil
+        operator.innerHTML += angka.getOprator
+        inputJawaban1.value = angka.getNum
+
+        cekJawaban.addEventListener('click', () => {
+            if(angka.getNum2 == inputJawaban2.value) {
+                document.getElementById('isBenar').innerHTML = 'benar'
+            } else {
+                document.getElementById('isBenar').innerHTML = 'salah'
+            }
+        })
+    </script>
+</body>
+</html>

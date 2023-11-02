@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak kata</title>
+</head>
+<body>
+
+    <main>
+        <div id="kata-acak">Kata Acak: </div>
+        <br>
+        <div>
+            <label for="kata-asli">Jawaban</label>
+            <input type="text" id="kata-asli">
+            <button type="button" id="kirim">cek</button>
+        </div>
+        <P id="aaa"></P>
+    </main>
+
+    <script src="index.js"></script>
+    
+    <script>
+        let pertanyaan = document.getElementById('kata-acak');
+        let jawaban = document.getElementById('kata-asli');
+        let cekJawaban = document.getElementById('kirim')
+        let isBenar = document.getElementById('aaa');
+
+        //list kata
+        const kata = ['suka','makan','tidur','sekolah','mandi','guyur','tantrum']
+
+        const acakKata = kata[Math.floor(Math.random() * kata.length)];
+
+        pertanyaan.innerHTML += tebakKata(acakKata);
+
+        cekJawaban.addEventListener('click', () => {
+            isBenar.innerHTML = "";
+            if(jawaban.value === acakKata ) {
+                isBenar.innerHTML += 'Benar';
+            } else {
+                isBenar.innerHTML += 'Salah';
+            }
+        })
+        // console.log()
+    </script>
+</body>
+</html>

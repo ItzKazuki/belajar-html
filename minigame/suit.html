@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuitvDigital</title>
+    <style>
+        .game > button {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2></h2>
+
+    <div>
+        <p>musuh: wait opponent</p>
+    </div>
+    
+    <div class="game">
+        <button id="batu">Batu</button>
+        <button id="gunting">Gunting</button>
+        <button id="kertas">Kertas</button>
+    </div>
+
+    <script>
+        const batu = document.getElementById('batu')
+        const gunting = document.getElementById('gunting')
+        const kertas = document.getElementById('kertas')
+        const randNum = Math.random();
+        let user = '';
+
+        batu.addEventListener('click', () => user = 'batu')
+        gunting.addEventListener('click', () => user = 'gunting')
+        kertas.addEventListener('click', () => user = 'kertas')
+
+        
+
+    </script>
+</body>
+</html>
