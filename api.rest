@@ -1,0 +1,6 @@
+POST http://local.kazukikun.space/backend-php/index.php?action=login HTTP/1.1
+content-type: application/x-www-form-urlencoded
+
+username=kazuki&password=Kazukikun
+
+###
