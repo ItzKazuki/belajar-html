@@ -36,7 +36,6 @@
         const debugMusuh = document.getElementById('debugMusuh')
 
         // system var
-        const randNum = Math.floor(Math.random() * 3);
         const colorButtonIsTrue = 'blue';
         const MENANG = 'menang';
         const KALAH = 'kalah';
@@ -73,6 +72,7 @@
 
         // if check buton clicked
         function cekComputer() {
+            const randNum = Math.floor(Math.random() * 3);
             // ai input/ system input
             if(randNum == 0) {
                 ai = 'batu';
