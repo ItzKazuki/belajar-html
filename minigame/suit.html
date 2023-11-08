@@ -15,18 +15,13 @@
     <h2></h2>
 
     <div>
-        <p id="debugMusuh">musuh: wait a opponent</p>
+        <p id="debugMusuh">Musuh: </p>
     </div>
     
     <div class="game">
         <button id="batu">Batu</button>
         <button id="gunting">Gunting</button>
         <button id="kertas">Kertas</button>
-    </div>
-
-    <div>
-        <br>
-        <button id="cekSuit">Cek</button>
     </div>
 
     <div><p id="result">Hasil: </p></div>
@@ -43,8 +38,15 @@
         // system var
         const randNum = Math.floor(Math.random() * 3);
         const colorButtonIsTrue = 'blue';
+        const MENANG = 'menang';
+        const KALAH = 'kalah';
+        const SERI = 'seri';
         let user = '';
+        let res;
         let ai = '';
+
+        // default value
+        debugMusuh.innerHTML += 'wait a opponent';
 
         // user input, if batu return this, etc
         batu.addEventListener('click', () => {
@@ -52,55 +54,73 @@
             batu.style.backgroundColor = colorButtonIsTrue;
             gunting.style.backgroundColor = '';
             kertas.style.backgroundColor = '';
+            cekComputer();
         })
         gunting.addEventListener('click', () => {
             user = 'gunting';
             gunting.style.backgroundColor = colorButtonIsTrue; 
             batu.style.backgroundColor = '';
             kertas.style.backgroundColor = '';
+            cekComputer();
         })
         kertas.addEventListener('click', () => {
             user = 'kertas';
             kertas.style.backgroundColor = colorButtonIsTrue;
             gunting.style.backgroundColor = '';
             batu.style.backgroundColor = '';
+            cekComputer();
         })
 
-        // ai input/ system input
-        if(randNum == 0) {
-            ai = 'batu';
-        } else if(randNum == 1) {
-            ai = 'gunting'
-        } else {
-            ai = 'kertas';
-        }
-
-        
         // if check buton clicked
-        cek.addEventListener('click', () => {
+        function cekComputer() {
+            // ai input/ system input
+            if(randNum == 0) {
+                ai = 'batu';
+            } else if(randNum == 1) {
+                ai = 'gunting'
+            } else {
+                ai = 'kertas';
+            }
             
             // just a funny debug
             debugMusuh.innerHTML = 'musuh: ';
             hasil.innerHTML = 'Hasil: ';
-            debugMusuh.innerHTML += ai
+            debugMusuh.innerHTML += ai;
 
+            // if(user == ai) {
+            //     hasil.innerHTML += 'seri'
+            // } else if(ai == 'batu' && user == 'gunting') {
+            //     hasil.innerHTML += 'musuh menang'
+            // } else if(ai == 'gunting' && user == 'batu') {
+            //     hasil.innerHTML += 'kamu menang'
+            // } else if(ai == 'kertas' && user == 'gunting') {
+            //     hasil.innerHTML += 'kamu menang'
+            // } else if(ai == 'gunting' && user == 'kertas') {
+            //     hasil.innerHTML += 'musuh menang'
+            // } else if(ai == 'batu' && user == 'kertas') {
+            //     hasil.innerHTML += 'kamu menang'
+            // } else if(ai == 'kertas' && user == 'batu') {
+            //     hasil.innerHTML += 'musuh menang'
+            // }
 
+            // combine if else and ternary
             if(user == ai) {
-                hasil.innerHTML += 'seri'
-            } else if(ai == 'batu' && user == 'gunting') {
-                hasil.innerHTML += 'musuh menang'
-            } else if(ai == 'gunting' && user == 'batu') {
-                hasil.innerHTML += 'kamu menang'
-            } else if(ai == 'kertas' && user == 'gunting') {
-                hasil.innerHTML += 'kamu menang'
-            } else if(ai == 'gunting' && user == 'kertas') {
-                hasil.innerHTML += 'musuh menang'
-            } else if(ai == 'batu' && user == 'kertas') {
-                hasil.innerHTML += 'kamu menang'
-            } else if(ai == 'kertas' && user == 'batu') {
-                hasil.innerHTML += 'musuh menang'
+                // hasil.innerHTML += 'seri'
+                res = SERI;
+            } else if (user == 'batu') {
+                res = ai == 'gunting' ? MENANG : KALAH;
+                res = ai == 'kertas' ? KALAH : MENANG;
+            } else if(user == 'gunting') {
+                res = ai == 'kertas' ? MENANG : KALAH;
+                res = ai == 'batu' ? KALAH : MENANG;
+            } else if (user = 'kertas') {
+                res = ai == 'batu' ? MENANG : KALAH;
+                res = ai == 'gunting' ? KALAH : MENANG;
             }
-        })
+
+            hasil.innerHTML += res;
+            return;
+        }
     </script>
 </body>
 </html>
