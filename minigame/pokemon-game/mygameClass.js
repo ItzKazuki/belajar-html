@@ -1,18 +1,22 @@
 class Person {
-    constructor(name, health) {
+    constructor(name, defType) {
         this.name = name;
-        this.health = health;
-
+        this.defType = defType;
+        
+        // default val
+        this.health = 100; 
+        this.attackDecrease = 10;
+        this.attackIncrease = 10;
     }
 
     getDescription() {
-        return `name: ${this.name}, health: ${this.health}, def`
+        return `name: ${this.name}, health: ${this.health}, defense: ${this.defType}`
     }
 
-    decerseHealth(params, type) {
+    attack(type) {
         let types;
         if(!type) {
-            this.health = this.health - params;
+            this.health = this.health - this.attackDecrease;
             return this.health;
         }
 
@@ -33,12 +37,12 @@ class Person {
 let myself = new Person('myself', 100);
 let opponent = new Person('opponent', 100);
 console.log(myself.getDescription());
-console.log(opponent.decerseHealth(50))
+console.log(opponent.attack(50))
 
 
 /* 
 player punya 2, def sm att,
 def itu bisa di antara (api, air, daun)
 att itu bisa di antara (api, air, daun)
-pas start game pilih jenis def nya, 
+pas start game pilih jenis def ny                                                                                                                                                   a, 
 */

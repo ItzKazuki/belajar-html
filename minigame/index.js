@@ -1,3 +1,12 @@
+/**
+ * 
+ * @param {number} range 
+ * @returns make a random number by range
+ */
+function randNum(range) {
+    return Math.floor(Math.random() * range)
+}
+
 
 function tebakKata(kata) {
     let arrKata = [];
@@ -24,8 +33,6 @@ function tebakKata(kata) {
 }
 
 function tebakAngka(angka1, angka2) {
-    const randNum = (range) => Math.floor(Math.random() * range)
-
 
     // operator
     const arrOprator = ['+', '-', '*', '/']
@@ -35,7 +42,7 @@ function tebakAngka(angka1, angka2) {
     const pembagian = (a, b) => a / b;
     // nilai
 
-    const getOprator = arrOprator[randNum(arrOprator.length)]
+    const getOprator = arrOprator[randNum(arrOprator.length)];
 
     let getNum = randNum(100)
     let getNum2 = randNum(100)

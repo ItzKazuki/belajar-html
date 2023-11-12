@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniGame</title>
+    <style>
+        main {
+            text-align: center;
+        }
+
+        .hide {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="main">
+            <h1>Start A Journey</h1>
+            <button onclick="startGame()">START</button>
+        </div>
+    
+        <div id="pilih" class="hide">
+            <div>
+                <p id="myHealth">Apa yang mau kamu lakukan?</p>
+                <p></p>
+            </div>
+        
+            <div>
+                <button onclick="selectDef()">Serang</button>
+                <!-- <button onclick="upgradeTools()">Upgrade Alat</button> -->
+                <button onclick="quitGame()">Lari</button>
+            </div>
+        </div>
+    
+        <div id="attrDef" class="hide">
+            <p>Set Your Attribut Defense</p>
+    
+            <div>
+                <button id="defApi">Api</button>
+                <button id="defDaun">Daun</button>
+                <button id="defAir">Air</button>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="fight" class="hide">
+        <div>
+            <p id="myHealth">your HP: </p>
+            <p id="myDefense">Your defense: </p>
+            <p id="opponentHealth">opponent HP: </p>
+            <span id="information"></span>
+        </div>
+    
+        <br>
+
+        <div>
+            <button id="api">api</button>
+            <button id="daun">daun</button>
+            <button id="air">air</button>
+        </div>
+    </div>
+
+    <script src="myGame.js"></script>
+</body>
+</html>
