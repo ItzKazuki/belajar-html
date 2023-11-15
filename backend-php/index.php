@@ -23,6 +23,7 @@ switch($getAction) {
     }
     
 function login($conn) {
+    if(!isset($_POST['username']) || !isset($_POST['password'])) return false;
     $username = $_POST['username'];
     $password = $_POST['password'];
     
