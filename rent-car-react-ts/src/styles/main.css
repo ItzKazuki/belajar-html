@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+:root {
+    --mainColor: rgb(0, 65, 109);
+    --mainColorLight: rgb(0, 136, 226);
+    --secondaryColor: rgb(119, 182, 255);
+    --textColor: white;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0, 2rem; /* first top bottom, second left right */
+    background-color: var(--mainColor);
+    color: var(--textColor);
+}
+
+header h3 {
+    margin: 0 2rem;
+}
+
+nav a {
+    margin: 0 2rem;
+    color: var(--textColor);
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--secondaryColor)
+}
+
+.container {
+    margin: 1rem 2rem;
+}
+
+.car {
+    height: 100vh;
+}
+
+.car-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* card */
+
+.card-container {
+    width: 350px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px -5px;
+    transition: 0.3s;
+    animation: ease-in-out;
+    margin: 2rem;
+}
+
+.card-container:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px 0px;
+}
+
+.card-image img{
+    overflow: hidden;
+    height: 200px;
+}
+
+.card-content {
+    margin: 1rem;
+    margin-top: 0.5rem;
+}
+
+.card-title h3, .card-body p {
+    margin: 0;
+    padding: 0;
+}
+
+.card-title {
+    margin-bottom: 0.5rem;
+}
+
+.card-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.card-btn button {
+    padding: 0.5rem;
+    background-color: white;
+    border: none;
+    transition: 0.2s;
+    margin-bottom: 0.5rem;
+    border-radius: 3px;
+}
+
+.card-btn button:hover {
+    background: rgb(139, 139, 216);
+}
+
+.card-btn button a {
+    text-transform: uppercase;
+    color: aqua;
+    text-decoration: none;
+    font-weight: bold;
+}
