@@ -18,7 +18,6 @@ class Element {
         this.name = name;
         this.damage = damage;
         this.defense = defense;
-
     }
     // api() {
     //     this.name = 'api';
@@ -73,7 +72,12 @@ class Player {
      */
     setDefense(element) {
         this.defName = element.name
-        return this.element = element;
+        return this.elementDefense = element;
+    }
+
+    setAttack(element) {
+        this.attackName = element.name;
+        return this.elementAttack = element;
     }
 
     /**
@@ -96,7 +100,7 @@ class Player {
      * @returns make attack do decerse health computer.
      */
     attack(player) {
-        return player.health = player.health - this.element.damage;
+        return player.health = player.health - this.elementAttack.damage;
     }
 }
 
@@ -146,9 +150,22 @@ const selectDefPlayer = document.getElementById('attrDef')
  * Public Variable
  * this var accept by global
  */
+const HOME = '../index.html';
 let playerDef;
 let computerDef;
+let attackUse;
+let computerAttackUse;
+let whoStartFirst = 0;
+
 const elementList = [new Element('api', 10, 5), new Element('daun', 5, 10), new Element('air', 10, 10)];
+
+// player
+let myself = new Player('myself');
+let computer = new Player('computer');
+
+/**
+ * End Public Variable
+ */
 
 /**
  * 
@@ -166,7 +183,7 @@ function startGame() {
  * @returns confirmation if you want quit the page.
  */
 function quitGame() {
-    return confirm('apakah kamu yakin?') ? window.location.href = '../index.html' : '';
+    return confirm('apakah kamu yakin?') ? window.location.href = HOME : '';
 }
 
 // /**
@@ -185,11 +202,6 @@ function quitGame() {
 //     }
 // }
 
-
-// player
-let myself = new Player('myself');
-let computer = new Player('computer');
-
 /**
  * 
  * @returns set player defense page.
@@ -202,36 +214,50 @@ async function selectDef() {
     document.getElementById('defApi').addEventListener('click', () => {
         playerDef = elementList[0].name;
         myself.setDefense(elementList[0]);
-        computerRandSelect();
+        computerRandSelect('defense');
         attack();
     })
     document.getElementById('defDaun').addEventListener('click', () => {
         playerDef = elementList[1].name;
         myself.setDefense(elementList[1]);
-        computerRandSelect();
+        computerRandSelect('defense');
         attack();
 
     })
     document.getElementById('defAir').addEventListener('click', () => {
         playerDef = elementList[2].name;
         myself.setDefense(elementList[2]);
-        computerRandSelect();
+        computerRandSelect('defense');
         attack();
     })
     return;
 }
 
-function computerRandSelect() {
+function computerRandSelect(type) {
     let comRan = randNum(3);
-    if(comRan == 0) {
-        computerDef = elementList[0].name;
-        computer.setDefense(elementList[0]);
-    } else if(comRan == 1) {
-        computerDef = elementList[1].name;
-        computer.setDefense(elementList[1]);
-    } else if(comRan == 2) {
-        computerDef = elementList[2].name;
-        computer.setDefense(elementList[2]);
+
+    if(type == 'defense') {
+        if(comRan == 0) {
+            computerDef = elementList[0].name;
+            computer.setDefense(elementList[0]);
+        } else if(comRan == 1) {
+            computerDef = elementList[1].name;
+            computer.setDefense(elementList[1]);
+        } else if(comRan == 2) {
+            computerDef = elementList[2].name;
+            computer.setDefense(elementList[2]);
+        }
+    } else if(type == 'attack') {
+        if(comRan == 0) {
+            computerAttackUse = elementList[0].name;
+            computer.setAttack(elementList[0]);
+        } else if(comRan == 1) {
+            computerAttackUse = elementList[1].name;
+            computer.setAttack(elementList[1]);
+        } else if(comRan == 2) {
+            computerAttackUse = elementList[2].name;
+            computer.setAttack(elementList[2]);
+        }
     }
 }
 
@@ -250,10 +276,10 @@ function attack() {
     const compHealth = document.getElementById('computerHealth');
     const compDefense = document.getElementById('computerDefense')
     const information = document.getElementById('information');
+    const playerDO = document.getElementById('player-do');
+    const playerIs = document.getElementById('attackOrDefense');
 
     // default var
-    let attackUse;
-    let computerAttackUse;
     const oldHP = health.innerHTML;
     const oldComputerHP = compHealth.innerHTML;
     const oldDefense = defense.innerHTML;
@@ -268,22 +294,66 @@ function attack() {
     compDefense.innerHTML += computer.defName;
 
     // harusny disini tuh tiap player di kasih jeda kek player a attack pake... nanti wait 5/10 detik, gituuuu
+    if(whoStartFirst == 1) {
+        whoStartFirst = 0;
+        playerDO.innerHTML = 'Player is attacking';
+        playerIs.innerHTML = 'Select your element attack';
 
-    document.getElementById('api').addEventListener('click', () => {
-        attackUse = elementList[0].name;
-        computerAttackUse = getRandComputer(randNum(3));
-        checkComputer();
-    })
-    document.getElementById('daun').addEventListener('click', () => {
-        attackUse = elementList[1].name;
-        computerAttackUse = getRandComputer(randNum(3));
-        checkComputer();
-    })
-    document.getElementById('air').addEventListener('click', () => {
-        attackUse = elementList[2].name;
-        computerAttackUse = getRandComputer(randNum(3));
-        checkComputer();
-    })
+        document.getElementById('api').addEventListener('click', () => {
+            attackUse = elementList[0].name;
+            myself.setAttack(elementList[0]);
+            computerRandSelect('defense');
+            checkComputer();
+            wait(10);
+            attack();
+        })
+        document.getElementById('daun').addEventListener('click', () => {
+            attackUse = elementList[1].name;
+            myself.setAttack(elementList[1]);
+            computerRandSelect('defense');
+            checkComputer();
+            wait(10);
+            attack();
+        })
+        document.getElementById('air').addEventListener('click', () => {
+            attackUse = elementList[2].name;
+            myself.setAttack(elementList[2]);
+            computerRandSelect('defense');
+            checkComputer();
+            wait(10);
+            attack();
+        })
+    } else {
+        whoStartFirst = 1;
+        playerDO.innerHTML = 'computer is attacking';
+        playerIs.innerHTML = 'Select your element defense';
+    
+        document.getElementById('api').addEventListener('click', () => {
+            playerDef = elementList[0].name;
+            myself.setDefense(elementList[0]);
+            computerRandSelect('attack');
+            checkComputer();
+            wait(10);
+            attack();
+        })
+        document.getElementById('daun').addEventListener('click', () => {
+            playerDef = elementList[1].name;
+            myself.setDefense(elementList[1]);
+            computerRandSelect('attack');
+            checkComputer();
+            wait(10);
+            attack();
+    
+        })
+        document.getElementById('air').addEventListener('click', () => {
+            playerDef = elementList[2].name;
+            myself.setDefense(elementList[2]);
+            computerRandSelect('attack');
+            checkComputer();
+            wait(10);
+            attack();
+        })
+    }
 
     function checkComputer() {
         if(myself.health == 0) checkWiner(myself);
@@ -324,7 +394,7 @@ function attack() {
         let myConfirm = player.name == 'myself' ? 'You lose, want to try again?' : 'You win, want try again?';
 
         if(!confirm(myConfirm)) {
-            window.location.href = '../index.html';
+            window.location.href = HOME;
             return true;
         }
 

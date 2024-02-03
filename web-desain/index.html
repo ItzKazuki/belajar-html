@@ -20,6 +20,33 @@
 </head>
 
 <body>
+    <!-- login-page -->
+    <div id="login-modal" class="modal">
+  
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="imgcontainer">
+                <span id="close-login" class="close" title="Close Modal">&times;</span>
+                <!-- <img src="img_avatar2.png" alt="Avatar" class="avatar"> -->
+                <h1>Login</h1>
+            </div>
+
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+        
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                </label>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+      </div>
+    <!-- end login-page -->
+
     <!-- navbar -->
     <div class="navbar" id="navbar">
         <img src="assets/image/no bg-modified.png" alt="icon">
@@ -46,7 +73,7 @@
                 </section>
             </li>
             <li class="login-btn"><a href="register.html">Register</a></li>
-            <li class="login-btn"><a href="login.html">Login</a></li>
+            <li class="login-btn"><a id="btn-login" href="#login">Login</a></li>
         </ul>
     </div>
     <!-- End navbar  -->

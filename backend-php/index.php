@@ -121,3 +121,12 @@ function decrypt($decryptData, $decryptKey) {
 
     return $result;
 }
+
+function generateCaptcha() {
+    $res = ''
+    try {
+        new Exception('aaaa')
+    } catch() {
+        echo $e
+    }
+}
