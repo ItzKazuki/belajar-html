@@ -8,7 +8,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Navbar />
     <div className="container">
-    <App />
+      <App />
     </div>
   </React.StrictMode>,
 )

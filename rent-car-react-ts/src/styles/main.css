@@ -113,3 +113,19 @@ nav a:hover {
     text-decoration: none;
     font-weight: bold;
 }
+
+.message-auth {
+    margin: 1rem 0;
+}
+
+.field {
+    padding-bottom: 0.5rem;
+}
+
+.car-info {
+    margin: 100px 200px;
+}
+
+.car-detail img {
+    width: 300px;
+}

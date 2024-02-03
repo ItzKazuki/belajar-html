@@ -2,10 +2,11 @@ interface cardProps {
     key: number,
     image: string,
     title: string,
-    price: number
+    price: number,
+    to: number
 }
 
-export default function Card({key, image, title, price}: cardProps) {
+export default function Card({key, image, title, price, to}: cardProps) {
     return (
         <div className="card-container" key={key}>
             <div className="card-image">
@@ -20,7 +21,7 @@ export default function Card({key, image, title, price}: cardProps) {
                 </div>
             </div>
             <div className="card-btn">
-                <button><a href="#">Rent now</a></button>
+                <button><a href={"/car/info/" + to}>Rent now</a></button>
             </div>
         </div>
     );
