@@ -4,13 +4,17 @@ session_start();
 
 include "func/connection.php";
 
+if(!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
+  $_SESSION['error'] = "anda harus login terlebih dahulu";
+  header('Location: login.php');
+}
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 $data_students = $conn->query("SELECT * FROM nilai_siswa ORDER BY nilai DESC");
 
 while ($row = $data_students->fetch_row()) {
-  // print_r($row);
   $students[] = $row;
 }
 
@@ -28,7 +32,7 @@ while ($row = $data_students->fetch_row()) {
 </head>
 
 <body>
-  <nav class="navbar bg-base-100">
+<nav class="navbar bg-base-100">
     <div class="navbar-start">
       <div class="dropdown">
         <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -77,7 +81,13 @@ while ($row = $data_students->fetch_row()) {
       </ul>
     </div>
     <div class="navbar-end">
-      <a class="btn btn-warning mr-6">Logout</a>
+      <?php if (isset($_SESSION['username']) && isset($_SESSION['password'])) : ?>
+        <form action="func/auth-fn.php" method="post">
+          <button type="submit" name="type" value="logout" class="btn btn-warning mr-6">Logout</button>
+        </form>
+      <?php else : ?>
+        <a class="btn btn-info mr-6" href="login.php">Login</a>
+      <?php endif; ?>
     </div>
   </nav>
 
@@ -212,8 +222,6 @@ while ($row = $data_students->fetch_row()) {
   </dialog>
 
   <!-- error modal -->
-  <!-- Open the modal using ID.showModal() method -->
-  <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
   <dialog id="error-modal" class="modal border-red-500">
     <div class="modal-box">
       <h3 class="text-lg font-bold">Error</h3>
@@ -227,6 +235,7 @@ while ($row = $data_students->fetch_row()) {
     </div>
   </dialog>
 
+  <!-- success modal -->
   <dialog id="success-modal" class="modal">
     <div class="modal-box">
       <h3 class="text-lg font-bold">Success</h3>

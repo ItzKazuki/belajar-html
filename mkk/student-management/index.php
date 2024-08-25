@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +14,7 @@
 </head>
 
 <body>
-<nav class="navbar bg-base-100">
+  <nav class="navbar bg-base-100">
     <div class="navbar-start">
       <div class="dropdown">
         <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -58,7 +63,13 @@
       </ul>
     </div>
     <div class="navbar-end">
-      <a class="btn btn-warning mr-6">Logout</a>
+      <?php if (isset($_SESSION['username']) && isset($_SESSION['password'])) : ?>
+        <form action="func/auth-fn.php" method="post">
+          <button type="submit" name="type" value="logout" class="btn btn-warning mr-6">Logout</button>
+        </form>
+      <?php else : ?>
+        <a class="btn btn-info mr-6" href="login.php">Login</a>
+      <?php endif; ?>
     </div>
   </nav>
 
@@ -79,6 +90,45 @@
     </div>
   </div>
 
+  <!-- error modal -->
+  <dialog id="error-modal" class="modal border-red-500">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Error</h3>
+      <p class="py-4">THIS MESSAGE ERROR</p>
+      <div class="modal-action">
+        <form method="dialog">
+          <!-- if there is a button in form, it will close the modal -->
+          <button class="btn">Close</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- success modal -->
+  <dialog id="success-modal" class="modal">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Success</h3>
+      <p class="py-4">THIS MESSAGE Success</p>
+      <div class="modal-action">
+        <form method="dialog">
+          <!-- if there is a button in form, it will close the modal -->
+          <button class="btn">Close</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
 </body>
+
+<script src="assets/script.js"></script>
+<script>
+  <?php if (isset($_SESSION['error'])) : ?>
+    errorModal("<?= $_SESSION['error'] ?>")
+    <?php unset($_SESSION['error']) ?> // set error to null 
+  <?php endif; ?>
+  <?php if (isset($_SESSION['success'])) : ?>
+    successModal("<?= $_SESSION['success'] ?>")
+    <?php unset($_SESSION['success']) ?> // set error to null 
+  <?php endif; ?>
+</script>
 
 </html>

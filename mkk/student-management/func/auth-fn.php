@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $conn->close();
       break;
     default:
-      header('Location: ../data-nilai-students.php');
+      header('Location: ../index.php');
       break;
   }
 }
@@ -43,16 +43,19 @@ function login(): void
 {
   global $conn;
   // get username and password
-  $username = $_POST['username'];
-  $password = $_POST['password'];
+  $username = htmlspecialchars($_POST['username']);
+  $password = htmlspecialchars($_POST['password']);
 
   $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
 
-  if($conn->query($sql)) {
+  if ($conn->query($sql)->fetch_array() != null) {
     $_SESSION['username'] = $username;
     $_SESSION['password'] = $password;
     $_SESSION['success'] = "Berhasil Login";
-    header('Location: ..h-3/4index.php');
+    header('Location: ../index.php');
+  } else {
+    $_SESSION['error'] = "Username atau password tidak di temukan.";
+    header('Location: ../login.php');
   }
 }
 
@@ -60,8 +63,9 @@ function logout(): void
 {
   session_start();
   session_destroy();
+  session_start();
   $_SESSION['success'] = "Berhasil Logout";
-  header('Location: ../login.php');
+  header('Location: ../index.php');
 }
 
 function register(): void
@@ -79,7 +83,7 @@ function register(): void
   // add data to database
   $sql = "INSERT INTO users VALUES (NULL, '$username', '$password', '$f_name', current_timestamp(), 'users')";
 
-  if($conn->query($sql)) {
+  if ($conn->query($sql)) {
     $_SESSION['success'] = "Berhasil Menambahkan Akun";
     header('Location: ../index.php');
   }

@@ -15,4 +15,4 @@ folder ini berada di /var/www/local dimana ini adalah local folder untuk webserv
 - ?
 
 
-Last Update 14 Oct 11:50 PM in Jakarta.
+Last Update 26 Agu 04:03 AM in Jakarta.
