@@ -1,38 +1,24 @@
 <?php
 session_start();
 
-include 'func/connection.php';
-
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
   header('Location: login.php');
 }
 
 $currentFile = basename($_SERVER['PHP_SELF']);
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-$dataMapel = $conn->query("SELECT * FROM mata_pelajaran ORDER BY title ASC");
-
-while ($row = $dataMapel->fetch_row()) {
-  $mataPelajaran[] = $row;
-}
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Nilai Siswa</title>
+  <title>Document</title>
   <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="./assets/font-awesome-4.7.0/css/font-awesome.css">
 </head>
 
 <body>
-
   <div class="flex flex-row min-h-screen bg-gray-100 text-black">
     <aside class="sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-indigo-500">
       <div class="sidebar-header flex items-center justify-center py-2">
@@ -45,7 +31,7 @@ while ($row = $dataMapel->fetch_row()) {
       <div class="sidebar-content px-4 py-6 text-white">
         <ul class="flex flex-col w-full">
           <li class="my-px">
-            <a href="dashboard.php" class="flex flex-row items-center h-10 px-3 rounded-lg <?= $currentFile == "index.php" ? "text-black bg-gray-100" : "hover:bg-gray-100 hover:text-gray-700" ?>">
+            <a href="dashboard.php" class="flex flex-row items-center h-10 px-3 rounded-lg <?= $currentFile == "dashboard.php" ? "text-black bg-gray-100" : "hover:bg-gray-100 hover:text-gray-700" ?>">
               <span class="flex items-center justify-center text-lg">
                 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                   <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -170,8 +156,8 @@ while ($row = $dataMapel->fetch_row()) {
             </div>
           </form>
           <div class="flex ml-auto">
-          <a href class="flex flex-row items-center">
-              <img src="<?= $_SESSION['avatar'] ?>"class="h-10 w-10 border rounded-full" />
+            <a href class="flex flex-row items-center">
+              <img src="<?= $_SESSION['avatar'] ?>" alt class="h-10 w-10 bg-gray-200 border rounded-full" />
               <span class="flex flex-col ml-2">
                 <span class="truncate w-20 font-semibold tracking-wide leading-none"><?= $_SESSION['full_name'] ?></span>
                 <span class="truncate w-20 text-gray-500 text-xs leading-none mt-1">Manager</span>
@@ -182,44 +168,62 @@ while ($row = $dataMapel->fetch_row()) {
       </header>
       <div class="main-content flex flex-col flex-grow p-4">
         <div class="mx-4 my-2">
-          <div class="flex justify-between mb-3">
-            <h1 class="text-4xl font-bold mb-4">Daftar Mata Pelajaran</h1>
-            <?php if (isset($_SESSION['username']) && isset($_SESSION['password'])) : ?>
-              <a href="" class="btn btn-primary">Tambah Jadwal</a>
-            <?php endif; ?>
+          <div id="greeting" class="mb-4">
+            <h1 class="text-4xl font-bold mb-4">Dashboard</h1>
+            <p class="pl-4 mt-2 text-xl lg:pl-6">Welcome to dashboard, thankyou to using our service.</p>
           </div>
-          <div class="grow-0 card bg-blue-400 w-full h-auto">
-            <div class="card-body">
-              <?php if (!isset($mataPelajaran)) : ?>
-                <p>Data Not Found!, mata pelajaran unavailable</p>
-              <?php else : ?>
-                <div class="overflow-x-auto">
-                  <table class="table table-auto">
-                    <!-- head -->
-                    <thead class="text-black">
-                      <tr>
-                        <th>No</th>
-                        <th>Title</th>
-                        <th>Nama Guru</th>
-                        <th>Untuk Kelas</th>
-                        <th>Deskripsi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- row 1 -->
-                      <?php foreach ($mataPelajaran as $key => $student) : ?>
-                        <tr>
-                          <th><?= $key + 1 ?></th>
-                          <th><?= $student[1] ?></th>
-                          <th><?= $student[2] ?></th>
-                          <th><?= $student[3] ?></th>
-                          <th><?= $student[4] ?></th>
-                        </tr>
-                      <?php endforeach; ?>
-                    </tbody>
-                  </table>
+          <div class="flex flex-row gap-4 text-white">
+            <div class="card bg-primary w-full">
+              <div class="card-body">
+                <h2 class="card-title">Profile SMKN 71 Jakarta</h2>
+                <div class="card-actions justify-end">
+                  <button class="btn">Youtube</button>
                 </div>
-              <?php endif; ?>
+              </div>
+            </div>
+            <div class="card bg-warning w-full">
+              <div class="card-body">
+                <h2 class="card-title">Program Keahlian SMKN 71 Jakarta</h2>
+                <div class="card-actions justify-end">
+                  <button class="btn">Lihat Daftar</button>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-success w-full">
+              <div class="card-body">
+                <h2 class="card-title">SarPras SMKN 71 Jakarta</h2>
+                <div class="card-actions justify-end">
+                  <button class="btn">Lihat Info</button>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-error  w-full">
+              <div class="card-body">
+                <h2 class="card-title">Labolatarium SMKN 71 Jakarta</h2>
+                <div class="card-actions justify-end">
+                  <button class="btn">Lihat Info</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4 mx-4 my-4">
+          <div class="card bg-primary text-primary-content w-full col-span-2">
+            <div class="card-body">
+              <h2 class="card-title">Our Lab's</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div class="card-actions justify-end">
+                <button class="btn">See More</button>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-primary text-primary-content w-full">
+            <div class="card-body">
+              <h2 class="card-title">News</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div class="card-actions justify-end">
+                <button class="btn">Read More</button>
+              </div>
             </div>
           </div>
         </div>
@@ -231,7 +235,6 @@ while ($row = $dataMapel->fetch_row()) {
       </footer>
     </main>
   </div>
-
   <!-- error modal -->
   <dialog id="error-modal" class="modal border-red-500">
     <div class="modal-box">
@@ -259,8 +262,8 @@ while ($row = $dataMapel->fetch_row()) {
       </div>
     </div>
   </dialog>
-
 </body>
+
 <script src="assets/script.js"></script>
 <script>
   <?php if (isset($_SESSION['error'])) : ?>

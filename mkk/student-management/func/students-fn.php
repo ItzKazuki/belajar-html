@@ -50,24 +50,28 @@ function createStudent(): void
   if (!isset($nisn)) {
     $_SESSION['error'] = "Nisn wajib di isi!!"; // send error message
     header('Location: ../data-nilai-students.php');
+    exit();
   }
 
   // cek nama
   if (!isset($name)) {
     $_SESSION['error'] = "Nama wajib di isi!!"; // send error message
     header('Location: ../data-nilai-students.php');
+    exit();
   }
 
   // cek kelas
   if (!isset($class)) {
     $_SESSION['error'] = "Kelas wajib di isi!!"; // send error message
     header('Location: ../data-nilai-students.php');
+    exit();
   }
 
   // cek nilai
   if (!isset($nilai)) {
     $_SESSION['error'] = "Nilai wajib di isi!!"; // send error message
     header('Location: ../data-nilai-students.php');
+    exit();
   }
 
   $student = $conn->query("SELECT * FROM nilai_siswa WHERE name = '$name' OR nisn = $nisn");
@@ -75,6 +79,7 @@ function createStudent(): void
   if ($student->fetch_array() != null) {
     $_SESSION['error'] = "Nama atau Nisn siswa sudah ada"; // send error message
     header('Location: ../data-nilai-students.php');
+    exit();
   } else {
     // echo "tidak ada";
     $queryCreate = "INSERT INTO nilai_siswa (nisn, name, class, nilai) VALUES ('$nisn', '$name', '$class', '$nilai')";
@@ -82,6 +87,7 @@ function createStudent(): void
     if ($conn->query($queryCreate)) {
       $_SESSION['success'] = "Berhasil Menambah data siswa"; // send success message
       header("Location: ../data-nilai-students.php");
+      exit();
     } else {
       // echo "Error: " . $queryCreate . "<br>" . mysqli_error($conn);
       $_SESSION['error'] = "kesalahan ditemukan saat menjalani query: $queryCreate"; // send error message
@@ -98,6 +104,7 @@ function editStudent(int $nisn): void
   if (!isset($nisn)) {
     $_SESSION['error'] = "Nisn wajib di isi!!"; // send error message
     header('Location: ../data-nilai-students.php');
+    exit();
   }
 
   // $inputNisn = $_POST['nisn'];
@@ -109,6 +116,7 @@ function editStudent(int $nisn): void
   if (!isset($name)) {
     $_SESSION['error'] = "Nama wajib di isi!!"; // send error message
     header('Location: ../data-nilai-students.php');
+    exit();
   }
 
   // cek kelas
@@ -121,6 +129,7 @@ function editStudent(int $nisn): void
   if (!isset($nilai)) {
     $_SESSION['error'] = "Nilai wajib di isi!!"; // send error message
     header('Location: ../data-nilai-students.php');
+    exit();
   }
 
   // cek apakah ada isswa yang namanya atau nisnnya sama
@@ -129,11 +138,13 @@ function editStudent(int $nisn): void
   if ($student->fetch_array(MYSQLI_NUM)[0] != null) {
     $_SESSION['error'] = "Nama atau Nisn siswa sudah ada"; // send error message
     header('Location: ../data-nilai-students.php');
+    exit();
   } else {
     $queryEdit = "UPDATE nilai_siswa SET name = '$name', class = '$class', nilai = $nilai WHERE nisn = $nisn";
     if ($conn->query($queryEdit)) {
       $_SESSION['success'] = "Berhasil Mengubah data siswa"; // send success message
       header('Location: ../data-nilai-students.php');
+      exit();
     } else {
       // echo "something error, please try again later...";
       $_SESSION['error'] = "kesalahan ditemukan saat menjalani query: $queryEdit"; // send error message
@@ -152,6 +163,7 @@ function deleteStudent(int $nisn): void
     // return 1;
     $_SESSION['success'] = "Berhasil Menghapus data siswa dengan nisn: $nisn";
     header('Location: ../data-nilai-students.php');
+    exit();
   } else {
     // echo "Error";
     $_SESSION['error'] = "kesalahan ditemukan saat menjalani query: $queryDelete"; // send error message

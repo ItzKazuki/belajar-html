@@ -9,35 +9,29 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 $currentFile = basename($_SERVER['PHP_SELF']);
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+$data_guru = $conn->query("SELECT * FROM guru ORDER BY created_at ASC");
 
-$dataMapel = $conn->query("SELECT * FROM mata_pelajaran ORDER BY title ASC");
-
-while ($row = $dataMapel->fetch_row()) {
-  $mataPelajaran[] = $row;
+while ($row = $data_guru->fetch_row()) {
+  $teachers[] = $row;
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Nilai Siswa</title>
+  <title>Document</title>
   <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="./assets/font-awesome-4.7.0/css/font-awesome.css">
 </head>
 
 <body>
-
   <div class="flex flex-row min-h-screen bg-gray-100 text-black">
     <aside class="sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-indigo-500">
       <div class="sidebar-header flex items-center justify-center py-2">
         <div class="inline-flex">
-          <a href="#" class="inline-flex flex-row items-center">
+          <a href="dashboard.php" inline-flex flex-row items-center">
             <span class="leading-10 text-gray-100 text-2xl font-bold ml-1 uppercase">SMKN 71 Jakarta</span>
           </a>
         </div>
@@ -170,8 +164,8 @@ while ($row = $dataMapel->fetch_row()) {
             </div>
           </form>
           <div class="flex ml-auto">
-          <a href class="flex flex-row items-center">
-              <img src="<?= $_SESSION['avatar'] ?>"class="h-10 w-10 border rounded-full" />
+            <a href class="flex flex-row items-center">
+              <img src="<?= $_SESSION['avatar'] ?>" alt class="h-10 w-10 bg-gray-200 border rounded-full" />
               <span class="flex flex-col ml-2">
                 <span class="truncate w-20 font-semibold tracking-wide leading-none"><?= $_SESSION['full_name'] ?></span>
                 <span class="truncate w-20 text-gray-500 text-xs leading-none mt-1">Manager</span>
@@ -181,56 +175,86 @@ while ($row = $dataMapel->fetch_row()) {
         </div>
       </header>
       <div class="main-content flex flex-col flex-grow p-4">
-        <div class="mx-4 my-2">
+        <div class="min-h-screen mx-4 my-2">
           <div class="flex justify-between mb-3">
-            <h1 class="text-4xl font-bold mb-4">Daftar Mata Pelajaran</h1>
+            <h1 class="text-4xl font-bold mb-4">Daftar Guru</h1>
             <?php if (isset($_SESSION['username']) && isset($_SESSION['password'])) : ?>
-              <a href="" class="btn btn-primary">Tambah Jadwal</a>
+              <button onclick="document.getElementById('tambah_guru').showModal()" class="btn btn-primary">Tambah Guru</button>
             <?php endif; ?>
           </div>
-          <div class="grow-0 card bg-blue-400 w-full h-auto">
-            <div class="card-body">
-              <?php if (!isset($mataPelajaran)) : ?>
-                <p>Data Not Found!, mata pelajaran unavailable</p>
-              <?php else : ?>
-                <div class="overflow-x-auto">
-                  <table class="table table-auto">
-                    <!-- head -->
-                    <thead class="text-black">
-                      <tr>
-                        <th>No</th>
-                        <th>Title</th>
-                        <th>Nama Guru</th>
-                        <th>Untuk Kelas</th>
-                        <th>Deskripsi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- row 1 -->
-                      <?php foreach ($mataPelajaran as $key => $student) : ?>
-                        <tr>
-                          <th><?= $key + 1 ?></th>
-                          <th><?= $student[1] ?></th>
-                          <th><?= $student[2] ?></th>
-                          <th><?= $student[3] ?></th>
-                          <th><?= $student[4] ?></th>
-                        </tr>
-                      <?php endforeach; ?>
-                    </tbody>
-                  </table>
+          <?php if (!isset($teachers)) : ?>
+            <p>tidak ada guru yang terdaftar</p>
+          <?php else : ?>
+            <div class="grid grid-cols-4 gap-4">
+              <?php foreach($teachers as $teacher): ?>
+              <div class="card bg-base-100 w-80 shadow-xl">
+                <figure>
+                  <img src="<?= $teacher[5] ?>" alt="Foto Guru" />
+                </figure>
+                <div class="card-body">
+                  <h2 class="card-title"><?= $teacher[1] ?></h2>
+                  <p><?= $teacher[2] ?> SMKN 71 Jakarta</p>
+                  <div class="card-actions justify-end">
+                    <button onclick="errorModal('Sorry, this feature is under development!')" class="btn btn-primary">Details</button>
+                  </div>
                 </div>
-              <?php endif; ?>
+              </div>
+              <?php endforeach; ?>
             </div>
-          </div>
+          <?php endif; ?>
         </div>
+
       </div>
-      <footer class="footer px-4 py-6">
-        <div class="footer-content">
-          <p class="text-sm text-gray-600 text-center">© Brandname 2020. All rights reserved. <a href="https://twitter.com/iaminos">by iAmine</a></p>
-        </div>
-      </footer>
-    </main>
   </div>
+  </div>
+  <footer class="footer px-4 py-6">
+    <div class="footer-content">
+      <p class="text-sm text-gray-600 text-center">© Brandname 2020. All rights reserved. <a href="https://twitter.com/iaminos">by iAmine</a></p>
+    </div>
+  </footer>
+  </main>
+  </div>
+
+  <!-- Open the modal using ID.showModal() method -->
+  <dialog id="tambah_guru" class="modal">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Tambah Guru</h3>
+      <form name="edit-student" method="post" action="func/guru-fn.php" enctype="multipart/form-data">
+        <div class="form-control w-full">
+          <label for="nip" class="label-text text-base-content">NIP: </label>
+          <input class="input input-bordered mt-2" type="text" inputmode="numeric" name="nip">
+        </div>
+        <div class="form-control w-full">
+          <label for="name" class="label-text text-base-content">Nama Guru: </label>
+          <input class="input input-bordered mt-2" type="text" name="name" required>
+        </div>
+        <div class="form-control w-full">
+          <label for="jabatan" class="label-text text-base-content mb-2 w-full">Jabatan:</label>
+          <select class="select select-bordered w-full max-w-xs" name="jabatan" required>
+            <option value="Kepala Sekolah">Kepala Sekolah</option>
+            <option value="Kesiswaan">Kesiswaan</option>
+            <option value="Tata Usaha">Tata Usaha</option>
+            <option value="Hubin">Hubin</option>
+            <option value="Kepala Jurusan">Kepala Jurusan</option>
+            <option value="Guru">Guru</option>
+          </select>
+        </div>
+        <div class="form-control w-full">
+          <label for="nilai" class="label-text text-base-content">Mengajar:</label>
+          <input type="text" inputmode="numeric" class="input input-bordered mt-2" name="mengajar" required>
+        </div>
+        <div class="form-control w-full mt-2">
+          <label for="nilai" class="label-text text-base-content">Foto background merah:</label>
+          <img src="#" alt="" id="file-preview">
+          <input type="file" name="foto_guru" id="file-upload" required>
+        </div>
+        <div class="modal-action">
+          <button class="btn btn-primary" type="submit" name="type" value="create">Tambah Guru</button>
+          <button onclick="closeModal('tambah_guru')" class="btn">Close</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
 
   <!-- error modal -->
   <dialog id="error-modal" class="modal border-red-500">
@@ -259,10 +283,27 @@ while ($row = $dataMapel->fetch_row()) {
       </div>
     </div>
   </dialog>
-
 </body>
+
 <script src="assets/script.js"></script>
 <script>
+  const inputFile = document.getElementById('file-upload')
+  inputFile.addEventListener('change', () => {
+    const file = inputFile.files;
+    if (file) {
+      const fileReader = new FileReader();
+      const preview = document.getElementById('file-preview');
+      fileReader.onload = event => {
+        preview.setAttribute('src', event.target.result);
+        preview.setAttribute('class', "my-3");
+        preview.setAttribute('width', "150");
+        preview.setAttribute('height', "300");
+        preview.setAttribute('alt', "Preview Uploaded Image")
+      }
+      fileReader.readAsDataURL(file[0]);
+    }
+  })
+
   <?php if (isset($_SESSION['error'])) : ?>
     errorModal("<?= $_SESSION['error'] ?>")
     <?php unset($_SESSION['error']) ?> // set error to null 
