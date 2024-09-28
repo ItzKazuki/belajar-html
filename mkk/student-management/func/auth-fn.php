@@ -2,6 +2,8 @@
 
 session_start();
 
+include 'utility.php';
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -46,17 +48,19 @@ function edit_password(): void
 {
   global $conn;
 
-  $email = htmlspecialchars($_POST['email']);
+  $reset = htmlspecialchars($_POST['reset']);
 
-  if (!isset($email)) {
+  if (!isset($reset)) {
     $_SESSION['error'] = "Something error, please try again from start.";
     header('Location: ../forgot_password.php');
     exit();
   }
 
-  $sql = "SELECT * FROM users WHERE email = '$email'";
+  $sql = "SELECT * FROM reset_password WHERE reset = '$reset'";
 
   $res = $conn->query($sql)->fetch_array();
+
+  $email = $res['email'];
 
   if (!isset($res)) {
     header('Location: ../forgot_password.php');
@@ -67,21 +71,8 @@ function edit_password(): void
   $newPassword = htmlspecialchars($_POST['new_password']);
   $confirmNewPassword = htmlspecialchars($_POST['confirm_new_password']);
 
-  // get salt
-  // $salt = explode(";", $res['password'])[0];
-  // $hashPassword = explode(";", $res['password'])[1];
-
-  // $currentHashPassword = generateHashWithSalt($oldPassword, $salt);
-
-  // cek apakah old password dengan yang di database dan yang di input user sama atau engga
-  // if($currentHashPassword !== $hashPassword) {
-  //   $_SESSION['error'] = "Something error, please try again from start.";
-  //   header('Location: ../forgot_password.php');
-  //   exit();
-  // }
-
   if ($newPassword !== $confirmNewPassword) {
-    header('Location: ../edit_password.php?email=' . $email);
+    header('Location: ../forgot_password.php?email=' . $email);
     exit();
   }
 
@@ -89,9 +80,10 @@ function edit_password(): void
   $salt = generateSalt();
   $hashNewPassword = generateHashWithSalt($newPassword, $salt);
 
-  $conn->query("UPDATE users SET password = '$salt;$hashNewPassword'");
+  $conn->query("UPDATE users SET password = '$salt;$hashNewPassword' WHERE email = '$email'");
 
   header('Location: ../login.php');
+  $_SESSION['success'] = "Berhasil mengubah password, silahkan login!";
   exit();
 }
 
@@ -102,14 +94,25 @@ function find_username(): void
 
   $sql = "SELECT * FROM users WHERE username = '$username'";
 
-  $res = $conn->query($sql)->fetch_array();
+  $res = $conn->query($sql);
 
-  if (isset($res)) {
-    header('Location: ../edit_password.php?email=' . $res['email']);
+  if ($res->num_rows > 0) {
+    // add record reset_password
+
+    $reset = bin2hex(random_bytes(40));
+    $email = $res->fetch_array()['email'];
+    $sql = "INSERT INTO reset_password (`reset`, `email`, `created_at`) VALUES('$reset', '$email', current_timestamp())";
+
+    // echo $sql;
+    // die();
+    $conn->query($sql);
+
+    header('Location: ../forgot_password.php?reset='. $reset);
     exit();
   } else {
     $_SESSION['error'] = "Username atau password tidak di temukan.";
     header('Location: ../forgot_password.php');
+    exit();
   }
 }
 
@@ -211,43 +214,4 @@ function generateHashWithSalt($password, $salt)
 {
   // Menggabungkan password dengan salt <da></da>n menghasilkan hash SHA-256
   return hash('sha256', $salt . $password);
-}
-
-function get_gravatar(
-  $email,
-  $size = 64,
-  $default_image_type = 'mp',
-  $force_default = false,
-  $rating = 'g',
-  $return_image = false,
-  $html_tag_attributes = []
-) {
-  // Prepare parameters.
-  $params = [
-    's' => htmlentities($size),
-    'd' => htmlentities($default_image_type),
-    'r' => htmlentities($rating),
-  ];
-  if ($force_default) {
-    $params['f'] = 'y';
-  }
-
-  // Generate url.
-  $base_url = 'https://www.gravatar.com/avatar';
-  $hash = hash('sha256', strtolower(trim($email)));
-  $query = http_build_query($params);
-  $url = sprintf('%s/%s?%s', $base_url, $hash, $query);
-
-  // Return image tag if necessary.
-  if ($return_image) {
-    $attributes = '';
-    foreach ($html_tag_attributes as $key => $value) {
-      $value = htmlentities($value, ENT_QUOTES, 'UTF-8');
-      $attributes .= sprintf('%s="%s" ', $key, $value);
-    }
-
-    return sprintf('<img src="%s" %s/>', $url, $attributes);
-  }
-
-  return $url;
 }
